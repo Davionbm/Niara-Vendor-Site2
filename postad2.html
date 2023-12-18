@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niara</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c771b35900.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <section class="nav">
+        <nav>
+        <div class="main-nav">     
+            <a href="index.html" class="logo">NIARA</a>
+            <a href="">How it works</a>
+            <a href="#">Sell on Niara</a>
+            <div class="search">
+                <input type="search">
+                <button type="submit">Search</button>
+            </div>
+            <i class="fa-regular fa-user"></i>
+            <a href="#">Login/Sign Up</a>
+            <i class="fa-regular fa-circle-question"></i>
+            <a href="#">FAQ</a>
+            <i class="fa-solid fa-cart-shopping"></i>
+            <a href="cart.html">Cart</a>
+        </div>
+
+        </nav>
+    </section>
+
+    <section class="postad">
+        <h1>Post Ad</h1>
+    </section>
+
+    <section class="post">
+        <div class="parent-post">
+
+            <div class="dropdown">
+                <button>Categories</button>
+                <div class="dropdown-content">
+                    <a>Vegetable & Fruits</a>
+                    <a>Food & Meal</a>
+                    <a>Meat & Fish</a>
+                    <a>Body Care &</a>
+                    <a>ingridents & Oil</a>
+                    <a>Pharmacy & Drug</a>
+                    <a>Other Categories</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button>Select A Loaction</button>
+                <div class="dropdown-content">
+                    <a>Osun</a>
+                    <a>Ondo</a>
+                    <a>Kwara</a>
+                    <a>Lagos</a>
+                    <a>Oyo</a>
+                    <a>Abuja</a>
+                </div>
+            </div>
+            <b><p>Add Photo</p></b>
+            <p class="post-text-1">First picture - is the title picture. You can change the<br>
+                order of photos just grab your photos and drag</p>
+
+            <!-- <div class="add-img">
+                 <button type="menu"><i class="fa-solid fa-plus"></i></button> 
+                <input type="file" type="button" placeholder="PLus">
+            </div> -->
+
+            <div class="file-input-container">
+                <!-- Hidden file input -->
+                <input type="file" class="file-input" id="myFileInput">
+        
+                <!-- Custom label or button -->
+                <label for="myFileInput" class="file-input-label"><i class="fa-solid fa-plus"></i></label>
+            </div>
+
+            <p>Supported  formats are  jpg.  png.  gif.  max 5MB</p>
+            <button class="post-submit" type="file">PROCEED</button>
+
+        </div>
+    </section>
+
+    <section class="sub-footer">
+        <div class="sub-parent-footer">
+            <div class="sub1">
+                <h3>Email Support</h3>
+                <a href="#">Help@niarang.com</a>
+            </div>
+            <div class="sub2">
+                <h3>Phone Support</h3>
+                <p>+234 9158582929,<br> 
+                    +234 8108079124
+                    </p>
+            </div>
+            <div class="sub3">
+                <h3>WhatsApp Support</h3>
+                <p>+234 8120002019, <br>
+                    +234 9158582929</p>
+            </div>
+            <div class="sub4">
+                <h3>Get updates on latest deals</h3>
+                <input type="email"><button>Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="cart" href="dashboard.html">
+        <ul id="cart">
+            <!-- Cart items will appear here -->
+          </ul>
+    </section>
+
+    <section class="footer">
+        <div class="parent-footer">
+            <div class="footer1">
+                <h3>About Us</h3>
+                <a href="#">Contact Us</a>
+                <a href="#">Careers</a>
+                <a href="#">About us</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer2">
+                <h3>Quick Links</h3>
+                <a href="#">Paylater</a>
+                <a href="#">Business</a>
+                <a href="#">Privacy policies & Terms</a>
+            </div>
+        </div>
+
+    </section>
+    
+
+    <script>
+        // Cart data
+        const cart = [];
+      
+        // Function to add items to the cart
+        function addToCart(productId, productName, productPrice) {
+          const existingItem = cart.find(item => item.id === productId);
+      
+          if (existingItem) {
+            // If the item is already in the cart, increase the quantity
+            existingItem.quantity += 1;
+          } else {
+            // If the item is not in the cart, add it with quantity 1
+            cart.push({ id: productId, name: productName, price: productPrice, quantity: 1 });
+          }
+      
+          // Update the cart display
+          updateCartDisplay();
+        }
+      
+        // Function to update the cart display
+        function updateCartDisplay() {
+          const cartElement = document.getElementById('cart');
+          const cartCounterElement = document.getElementById('cart-counter');
+      
+          // Update the cart counter
+          const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+          cartCounterElement.textContent = totalItems;
+      
+          // Clear the current cart display
+          cartElement.innerHTML = '';
+      
+          // Populate the cart display with the updated cart data
+          cart.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `${item.name} - $${item.price} x ${item.quantity} `;
+            
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.onclick = () => removeFromCart(item.id);
+      
+            li.appendChild(removeButton);
+            cartElement.appendChild(li);
+          });
+        }
+      
+        // Function to remove items from the cart
+        function removeFromCart(productId) {
+          const itemIndex = cart.findIndex(item => item.id === productId);
+      
+          if (itemIndex !== -1) {
+            // Remove the item from the cart
+            cart.splice(itemIndex, 1);
+      
+            // Update the cart display
+            updateCartDisplay();
+          }
+        }
+      </script>
+</body>
+</html>
